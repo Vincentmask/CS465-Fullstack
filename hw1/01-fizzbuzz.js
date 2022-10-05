@@ -8,7 +8,6 @@ Write a program that writes all the numbers from 1 to 100, with some exceptions:
 Use console.log() to write the proper output to the command line.
 
 * */
-
 const fizzbuzz = () => {
     for (let i = 1; i <= 100; i += 1) {
         let output = i
@@ -24,18 +23,3 @@ const fizzbuzz = () => {
 }
 
 fizzbuzz()
-// 1
-// 2
-// fizz
-// 4
-// buzz
-// fizz
-// 7
-// 8
-// fizz
-// buzz
-// 11
-// fizz
-// 13
-// 14
-// fizzbuzz
