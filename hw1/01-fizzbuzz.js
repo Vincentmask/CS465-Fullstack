@@ -7,26 +7,19 @@ Write a program that writes all the numbers from 1 to 100, with some exceptions:
 
 Use console.log() to write the proper output to the command line.
 
-**/
-
+* */
 const fizzbuzz = () => {
-  // Add your code here
-};
+    for (let i = 1; i <= 100; i += 1) {
+        let output = i
+        if (i % 15 === 0) {
+            output = 'FizzBuzz!'
+        } else if (i % 3 === 0) {
+            output = 'Fizz!'
+        } else if (i % 5 === 0) {
+            output = 'Buzz!'
+        }
+        console.log(output)
+    }
+}
 
-fizzbuzz();
-// 1
-// 2
-// fizz
-// 4
-// buzz
-// fizz
-// 7
-// 8
-// fizz
-// buzz
-// 11
-// fizz
-// 13
-// 14
-// fizzbuzz
-// ...
+fizzbuzz()
