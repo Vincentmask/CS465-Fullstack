@@ -1,6 +1,16 @@
 const http = require('http');
 const port = process.env.PORT || 5001;
 
+config = {
+  columns: {
+    0: {
+      width: 5, // Column 0 of width 5
+    },
+    1: {
+      width: 5, // Column 1 of width 5
+    },
+  },
+};
 const server = http.createServer((req, res) => {
   const routes = [
     '/attributes?hello=world&lorem=ipsum',
@@ -29,6 +39,19 @@ const server = http.createServer((req, res) => {
     res.write(`<h1>Exercise 02</h1>`);
 
     res.write(`<ul> ${routeResults} </ul>`);
+  } else {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    const queryObj = url.search;
+    const params = new URLSearchParams(queryObj);
+    const map = new Map();
+    params.forEach((value, key) => {
+      map.set(key, value);
+    });
+    let data = Array.from(map);
+    for (const [key, value] of map) {
+      res.write('<span>' + key + ' | ' + value + '</span><br/>');
+    }
+    res.end();
   }
 
   // Add your code here

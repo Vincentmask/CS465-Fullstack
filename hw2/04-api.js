@@ -9,7 +9,7 @@ let nf = new Intl.NumberFormat("en-US");
 // const popu = [];
 
 const map = new Map();
-var pop = 0;
+let pop = 0;
 let getData = (url) => {
   fetch(url)
     .then((response) => {
@@ -20,9 +20,9 @@ let getData = (url) => {
         pop = nf.format(data[i].population);
         map.set(data[i].name.common, pop);
       }
-      var mapAsc = new Map([...map.entries()].sort());
-      var count = 1;
-      var str = "";
+      let mapAsc = new Map([...map.entries()].sort());
+      let count = 1;
+      let str = "";
       for (const [key, value] of mapAsc) {
         str += count++ + `. ${key} - ${value} ` + "<br>";
       }

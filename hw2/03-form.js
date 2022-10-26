@@ -2,10 +2,10 @@
 
 // Add your code here
 function log() {
-  var UserName = document.getElementById("inputname");
-  var UserEmail = document.getElementById("inputemail");
-  var UserMessage = document.getElementById("inputmessage");
-  var UserNews = document.getElementById("check");
+  let UserName = document.getElementById("inputname");
+  let UserEmail = document.getElementById("inputemail");
+  let UserMessage = document.getElementById("inputmessage");
+  let UserNews = document.getElementById("check");
   if (UserName.value) {
     console.log("======== Form Submission ========");
     console.log("Name:" + UserName.value);

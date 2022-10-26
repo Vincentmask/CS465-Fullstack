@@ -1,8 +1,8 @@
 /** Exercise 01 - Coins **/
 
 const calculateChange = (input) => {
-  var amount = input;
-  var output = "$" + input + " ==> ";
+  let amount = input;
+  let output = "$" + input + " ==> ";
   if (input < 0) {
     output += " Error: the number is too small";
     return output;
@@ -13,7 +13,7 @@ const calculateChange = (input) => {
     output += " Error: the number is too large";
     return output;
   } else {
-    var pluralize = require("pluralize");
+    let pluralize = require("pluralize");
     let dollars = Math.floor(amount / 1.0);
     amount -= dollars * 1;
     amount = parseFloat(amount.toFixed(10));
