@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel ="shortcut icon" href="#"/>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -12,8 +13,35 @@
     <script defer src="03-form.js"></script>
   </head>
   <body class="bg-dark">
-    <form class="bg-light border rounded w-50 mx-auto mt-5 p-3">
+    <form class="bg-light border rounded w-25 mx-auto mt-5 p-3">
       <h1 class="mt-2 mb-4">Contact Form</h1>
+      <div class="form-group">
+        <label for="inputemail">Name * </label>
+        <input type="name" class="form-control" id="inputname" required />
+        <label for="inputemail">Email * </label>
+        <input type="email" class="form-control" id="inputemail" required />
+        <label for="inputmessage">Submit your message: </label>
+        <textarea type="name" class="form-control" id="inputmessage" rows="3"></textarea>
+        <input type="checkbox" id="check" />
+        <label for="check">Sign up for the newsletter</label>
+      </div>
+      <div class="row">
+        <input
+          type="submit"
+          class="btn btn-primary"
+          value="submit"
+          id="submit"
+          style="width:50%"
+          onclick="log()"
+        />
+        <input
+        type="reset"
+        class="btn btn-secondary"
+        value="reset"
+        id="reset"
+        style="width:50%"
+      />
+      </div>
     </form>
   </body>
 </html>
