@@ -1,4 +1,4 @@
-const http = require('http');
+const http = require("http");
 const port = process.env.PORT || 5001;
 
 // http://localhost:5001/form should return a form with input elements for username, email, and submit button
@@ -19,37 +19,37 @@ const postHTML = `<html><head><title>Form</title></head><body>
   </form></body></html>`;
 
 const server = http.createServer((req, res) => {
-  let body = '';
-  const routes = ['/form', '/submit'];
+  let body = "";
+  const routes = ["/form", "/submit"];
   const getRoutes = () => {
-    let result = '';
+    let result = "";
     routes.forEach((elem) => {
       result += `<li><a href="${elem}">${elem}</a></li>`;
     });
     return result;
   };
-  req.on('data', (chunk) => {
+  req.on("data", (chunk) => {
     body += chunk;
-    console.log('on data: ' + body);
+    console.log("on data: " + body);
   });
-  req.on('end', () => {
-    if (req.url === '/') {
+  req.on("end", () => {
+    if (req.url === "/") {
       const routeResults = getRoutes();
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write('<h1>Form</h1>');
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write("<h1>Form</h1>");
       res.write(`<ul> ${routeResults} </ul>`);
-    } else if (req.url === '/form') {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+    } else if (req.url === "/form") {
+      res.writeHead(200, { "Content-Type": "text/html" });
       res.end(postHTML);
-    } else if (req.url === '/submit') {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+    } else if (req.url === "/submit") {
+      res.writeHead(200, { "Content-Type": "text/html" });
       const params = new URLSearchParams(body);
-      res.write(`<h1>Name: ${params.get('name')}</h1>`);
-      res.write(`<h1>Email: ${params.get('email')}</h1>`);
-      if (!params.get('comment')) {
+      res.write(`<h1>Name: ${params.get("name")}</h1>`);
+      res.write(`<h1>Email: ${params.get("email")}</h1>`);
+      if (!params.get("comment")) {
         res.write(`<h1>Comment: n/a</h1>`);
-      } else res.write(`<h1>Name: ${params.get('name')}</h1>`);
-      if (!params.get('newsletter')) {
+      } else res.write(`<h1>comment: ${params.get("comment")}</h1>`);
+      if (!params.get("newsletter")) {
         res.write(`<h1>Newsletter: No, thank you.</h1>`);
       } else
         res.write(`<h1>Newsletter: Yes, sign me up for the newsletter.</h1>`);
