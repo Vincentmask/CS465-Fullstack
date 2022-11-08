@@ -40,8 +40,44 @@ app.get('/', (req, res) => {
   res.end();
 });
 
-app.get('/welcome', (req, res) => {});
+app.get('/welcome', (req, res) => {
+  res.status(200);
+  res.set({ 'Content-Type': 'text/html' });
+  res.send(`<h1>Welcome, have fun!</h1>`);
+  res.end();
+});
 
+app.get('/redirect', (req, res) => {
+  res.redirect(`http://localhost:${port}/redirected`);
+  res.end();
+});
+
+app.get('/redirected', (req, res) => {
+  res.status(302);
+  res.set({ 'Content-Type': 'text/html' });
+  res.send(`<h1>Redirected</h1>`);
+  res.end();
+});
+
+app.get('/cache', (req, res) => {
+  res.status(200);
+  res.set({ 'Content-Type': 'text/plain' });
+  res.set('Cache-control', 'public, max-age=86400');
+  res.send(`this resource was cached`);
+  res.end();
+});
+
+app.get('/cookie', (req, res) => {
+  res.status(200);
+  res.set({ 'Content-Type': 'text/plain' });
+  res.cookie('hello', 'world');
+  res.send(`cookies… yummm`);
+  res.end();
+});
+
+app.get('*', function (req, res) {
+  res.status(404).send('404 Page Not Found');
+});
 // Add your code here
 
 app.listen(port, () => {
