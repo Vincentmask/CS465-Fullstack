@@ -1,12 +1,21 @@
-const http = require('http');
+const http = require("http");
+const port = process.env.PORT || 5001;
 
-const port = process.env.PORT || 5000;
-
+config = {
+  columns: {
+    0: {
+      width: 5, // Column 0 of width 5
+    },
+    1: {
+      width: 5, // Column 1 of width 5
+    },
+  },
+};
 const server = http.createServer((req, res) => {
   const routes = [
-    '/attributes?hello=world&lorem=ipsum',
-    '/items?first=1&second=2&third=3&fourth=4',
-    '/characters?spongebob=squarepants&patrick=star&sandy=cheeks',
+    "/attributes?hello=world&lorem=ipsum",
+    "/items?first=1&second=2&third=3&fourth=4",
+    "/characters?spongebob=squarepants&patrick=star&sandy=cheeks",
   ];
 
   // use the URL interface to work with URLs
@@ -14,7 +23,7 @@ const server = http.createServer((req, res) => {
   let url = new URL(req.url, `http://${req.headers.host}`);
 
   let getRoutes = () => {
-    let result = '';
+    let result = "";
 
     routes.forEach(
       (elem) => (result += `<li><a href="${elem}">${elem}</a></li>`)
@@ -23,13 +32,29 @@ const server = http.createServer((req, res) => {
     return result;
   };
 
-  if (req.url === '/') {
+  if (req.url === "/") {
     let routeResults = getRoutes();
 
-    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.writeHead(200, { "Content-Type": "text/html" });
     res.write(`<h1>Exercise 02</h1>`);
 
     res.write(`<ul> ${routeResults} </ul>`);
+  } else {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    const queryObj = url.search;
+    const params = new URLSearchParams(queryObj);
+    const map = new Map();
+    params.forEach((value, key) => {
+      map.set(key, value);
+    });
+    let table = "<table border=2>";
+    let data = Array.from(map);
+    for (const [key, value] of map) {
+      table += `<tr><td>${key}</td><td>${value}</td><tr>`;
+    }
+    table += "</table>";
+    res.write(table);
+    res.end();
   }
 
   // Add your code here
